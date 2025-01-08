@@ -1,6 +1,8 @@
 import icons from "@/constants/icons";
 import images from "@/constants/images";
 import { login } from "@/lib/appwrite";
+import { useGlobalContext } from "@/lib/global-provider";
+import { Redirect } from "expo-router";
 import React from "react";
 import {
   Alert,
@@ -12,10 +14,13 @@ import {
   View,
 } from "react-native";
 const Signin = () => {
+  const { refetch, isLoggedIn, loading } = useGlobalContext();
+
   const handleLogin = async () => {
     // Implement Google OAuth login logic here
     const result = await login();
     if (result) {
+      refetch;
       console.log(result);
     } else {
       Alert.alert("Error failed to login");
