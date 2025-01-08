@@ -9,6 +9,7 @@ const TabIcon = ({
   title,
 }: {
   focused: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   icon: any;
   title: string;
 }) => (
@@ -71,7 +72,7 @@ const TabsLayout = () => {
           title: "Profile",
           headerShown: false,
           tabBarIcon: ({ focused }) => (
-            <TabIcon icon={icons.person} focused={focused} title="Home" />
+            <TabIcon icon={icons.person} focused={focused} title="Profile" />
           ),
         }}
       />
