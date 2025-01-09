@@ -1,5 +1,6 @@
 import { useGlobalContext } from "@/lib/global-provider";
 import { Redirect, Slot } from "expo-router";
+import React from "react";
 import { ActivityIndicator, SafeAreaView } from "react-native";
 
 const AppLayout = () => {

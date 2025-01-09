@@ -2,7 +2,6 @@ import icons from "@/constants/icons";
 import images from "@/constants/images";
 import { login } from "@/lib/appwrite";
 import { useGlobalContext } from "@/lib/global-provider";
-import { Redirect } from "expo-router";
 import React from "react";
 import {
   Alert,
@@ -20,7 +19,7 @@ const Signin = () => {
     // Implement Google OAuth login logic here
     const result = await login();
     if (result) {
-      refetch;
+      refetch();
       console.log(result);
     } else {
       Alert.alert("Error failed to login");
@@ -40,7 +39,7 @@ const Signin = () => {
             Welcome to Restate
           </Text>
           <Text className="text-3xl font-rubik-bold text-black-300 text-center mt-2">
-            Let't Get you closer {"\n"}
+            Let&apos;t Get you closer {"\n"}
             <Text className="text-primary-300">Your Ideal Home</Text>
           </Text>
           <Text className="text-lg font-rubik text-black-200 text-center mt-12">

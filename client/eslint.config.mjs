@@ -14,6 +14,7 @@ export default [
     rules: {
       "@typescript-eslint/no-unused-vars": "warn",
       "@typescript-eslint/no-wrapper-object-types": "warn",
+      "@typescript-eslint/no-require-imports": "off",
     },
   },
 ];
