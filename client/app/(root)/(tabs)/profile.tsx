@@ -2,6 +2,7 @@ import { settings } from "@/constants/data";
 import icons from "@/constants/icons";
 import { logout } from "@/lib/appwrite";
 import { useGlobalContext } from "@/lib/global-provider";
+import { capitalizeWords } from "@/util/string";
 import React from "react";
 import {
   Alert,
@@ -76,7 +77,7 @@ const Profile = () => {
               <Image source={icons.edit} className="size-9" />
             </TouchableOpacity>
             <Text className="text-2xl font-rubik-bold mt-2 ">
-              {user?.name.toLocaleUpperCase()}
+              {capitalizeWords(String(user?.name))}
             </Text>
           </View>
         </View>
