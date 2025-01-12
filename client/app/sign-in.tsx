@@ -1,7 +1,10 @@
 import icons from "@/constants/icons";
 import images from "@/constants/images";
+import { login } from "@/lib/appwrite";
+import { useGlobalContext } from "@/lib/global-provider";
 import React from "react";
 import {
+  Alert,
   Image,
   SafeAreaView,
   ScrollView,
@@ -9,11 +12,18 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-
 const Signin = () => {
-  const handleLogin = () => {
+  const { refetch, isLoggedIn, loading } = useGlobalContext();
+
+  const handleLogin = async () => {
     // Implement Google OAuth login logic here
-    console.log("Google OAuth login logic");
+    const result = await login();
+    if (result) {
+      refetch();
+      console.log(result);
+    } else {
+      Alert.alert("Error failed to login");
+    }
   };
   return (
     <SafeAreaView className="bg-white h-full">
@@ -29,7 +39,7 @@ const Signin = () => {
             Welcome to Restate
           </Text>
           <Text className="text-3xl font-rubik-bold text-black-300 text-center mt-2">
-            Let't Get you closer {"\n"}
+            Let&apos;t Get you closer {"\n"}
             <Text className="text-primary-300">Your Ideal Home</Text>
           </Text>
           <Text className="text-lg font-rubik text-black-200 text-center mt-12">
@@ -57,3 +67,4 @@ const Signin = () => {
 };
 
 export default Signin;
+// check github
