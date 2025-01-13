@@ -2,7 +2,7 @@ import React, { createContext, useContext } from "react";
 import { useAppwrite } from "./useApowrite";
 import { getCurrentUser } from "./appwrite";
 
-type User =
+export type User =
   | {
       $id: string;
       name: string;
@@ -38,6 +38,7 @@ export const GlobalProvider = ({ children }: { children: React.ReactNode }) => {
         isLoggedIn,
         user,
         loading,
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         //  @ts-ignore
         refetch,
       }}
