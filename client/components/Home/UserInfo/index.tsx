@@ -1,6 +1,7 @@
 import { capitalizeWords } from "@/util/string";
+import { router } from "expo-router";
 import React from "react";
-import { Image, Text, View } from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 type User =
   | {
       $id: string;
@@ -14,7 +15,10 @@ type User =
 const UserInfo = ({ user }: { user: User }) => {
   return (
     <View className="flex flex-row items-center justify-between mt-5">
-      <View className="flex flex-row items-center">
+      <TouchableOpacity
+        onPress={() => router.push("/profile")}
+        className="flex flex-row items-center"
+      >
         <Image
           source={{ uri: user?.avatar }}
           className="size-12 rounded-full"
@@ -25,7 +29,7 @@ const UserInfo = ({ user }: { user: User }) => {
             {capitalizeWords(String(user?.name))}
           </Text>
         </View>
-      </View>
+      </TouchableOpacity>
 
       {/* TODO: Coming Soon */}
       {/* <Image source={icons.bell} className="size-6" /> */}
