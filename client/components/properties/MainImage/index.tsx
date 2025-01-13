@@ -49,7 +49,8 @@ const MainImage = ({ imageUri }: MainImageProps) => {
               className="size-7"
               tintColor={"#191D31"}
             />
-            <Image source={icons.send} className="size-7" />
+            {/* TODO: Coming Soon */}
+            {/* <Image source={icons.send} className="size-7" /> */}
           </View>
         </View>
       </View>

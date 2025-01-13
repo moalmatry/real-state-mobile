@@ -1,4 +1,4 @@
-import { Card } from "@/components/FeaturedCard";
+import Card from "@/components/Card";
 import Filters from "@/components/Filters";
 import NoResults from "@/components/NoResults";
 import Search from "@/components/Search";
