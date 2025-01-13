@@ -20,7 +20,7 @@ const Signin = () => {
     const result = await login();
     if (result) {
       refetch();
-      console.log(result);
+      // console.log(result);
     } else {
       Alert.alert("Error failed to login");
     }

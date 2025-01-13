@@ -1,7 +1,7 @@
-import { View, Text, Image } from "react-native";
-import React from "react";
-import { Tabs } from "expo-router";
 import icons from "@/constants/icons";
+import { Tabs } from "expo-router";
+import React from "react";
+import { Image, Text, View } from "react-native";
 
 const TabIcon = ({
   focused,
@@ -9,7 +9,6 @@ const TabIcon = ({
   title,
 }: {
   focused: boolean;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   icon: any;
   title: string;
 }) => (
