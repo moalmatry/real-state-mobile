@@ -3,15 +3,39 @@ import React from "react";
 import PrimaryButton from "../PrimaryButton";
 import { Link } from "expo-router";
 import Input from "../Input";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  ForgotPasswordInput,
+  forgotPasswordSchema,
+} from "@/validation/forgotPasswordSchema";
 
 const ForgotPasswordForm = () => {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ForgotPasswordInput>({
+    resolver: zodResolver(forgotPasswordSchema),
+  });
+
+  const onSubmit = (data: ForgotPasswordInput) => {
+    console.log(data);
+  };
   return (
     <SafeAreaView className="py-9 px-8 gap-8 bg-white flex-1">
       <Text className="text-5xl font-rubik-semibold w-[17rem]">
         Forgot Password?
       </Text>
       <View className="flex gap-8 ">
-        <Input iconName="user-large" iconSize={20} placeholder="Email" />
+        <Input
+          control={control}
+          name="email"
+          iconName="user-large"
+          iconSize={20}
+          placeholder="Email"
+          error={errors.email?.message}
+        />
 
         <View className="gap-2">
           <Text className="text-gray-500 font-rubik">
@@ -20,7 +44,7 @@ const ForgotPasswordForm = () => {
           </Text>
         </View>
       </View>
-      <PrimaryButton title="Submit" />
+      <PrimaryButton onPress={handleSubmit(onSubmit)} title="Submit" />
       <Text className="text-center font-rubik">OR</Text>
       <Text className="text-center text-xl font-rubik">
         Create An Account{" "}

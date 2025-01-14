@@ -1,6 +1,6 @@
 import { useAuth } from "@/context/AuthContext";
 import { useGlobalContext } from "@/lib/global-provider";
-import { Redirect, Slot } from "expo-router";
+import { router, Slot } from "expo-router";
 import React from "react";
 import { ActivityIndicator, SafeAreaView } from "react-native";
 
@@ -16,7 +16,7 @@ const AppLayout = () => {
     );
   }
 
-  if (!isLoggedIn) return <Redirect href="/login" />;
+  if (!isLoggedIn) return router.replace("/login");
 
   return <Slot />;
 };

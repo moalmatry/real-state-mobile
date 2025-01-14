@@ -1,7 +1,8 @@
-import icons from "@/constants/icons";
+import PrimaryButton from "@/components/PrimaryButton";
 import images from "@/constants/images";
 import { login } from "@/lib/appwrite";
 import { useGlobalContext } from "@/lib/global-provider";
+import { router } from "expo-router";
 import React from "react";
 import {
   Alert,
@@ -9,10 +10,9 @@ import {
   SafeAreaView,
   ScrollView,
   Text,
-  TouchableOpacity,
   View,
 } from "react-native";
-const Signin = () => {
+const WelcomeScreen = () => {
   const { refetch, isLoggedIn, loading } = useGlobalContext();
 
   const handleLogin = async () => {
@@ -21,8 +21,10 @@ const Signin = () => {
     if (result) {
       refetch();
       // console.log(result);
+      router.push("/(root)/(tabs)");
     } else {
       Alert.alert("Error failed to login");
+      router.push("/(root)/(tabs)");
     }
   };
   return (
@@ -36,16 +38,16 @@ const Signin = () => {
 
         <View className="px-10">
           <Text className="text-base text-center uppercase font-rubik text-black-200">
-            Welcome to Restate
+            Welcome to Maadi Restate
           </Text>
           <Text className="text-3xl font-rubik-bold text-black-300 text-center mt-2">
             Let&apos;t Get you closer {"\n"}
             <Text className="text-primary-300">Your Ideal Home</Text>
           </Text>
-          <Text className="text-lg font-rubik text-black-200 text-center mt-12">
-            Login to Restate with Google
+          <Text className="text-lg font-rubik text-black-200 text-center mt-12 mb-2">
+            Best Properties In Maadi
           </Text>
-          <TouchableOpacity
+          {/* <TouchableOpacity
             className="bg-white shadow-md shadow-zinc-300 rounded-full w-full py-4 mt-5"
             onPress={handleLogin}
           >
@@ -59,12 +61,17 @@ const Signin = () => {
                 Continue With Google
               </Text>
             </View>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
+          <PrimaryButton
+            title="Get Started"
+            // onPress={handleLogin}
+            onPress={() => router.push("/login")}
+          />
         </View>
       </ScrollView>
     </SafeAreaView>
   );
 };
 
-export default Signin;
+export default WelcomeScreen;
 // check github

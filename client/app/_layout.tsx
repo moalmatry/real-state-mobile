@@ -35,7 +35,7 @@ const Layout = () => {
             options={{
               animation: "slide_from_right",
             }}
-            name="sign-in"
+            name="index"
           />
           <Stack.Screen
             options={{
@@ -49,6 +49,14 @@ const Layout = () => {
             }}
             name="login"
           />
+
+          <Stack.Screen
+            options={{
+              animation: "slide_from_right",
+            }}
+            name="forgot-password"
+          />
+          <Stack.Screen name="(root)" />
         </Stack>
       </GlobalProvider>
     </AuthProvider>
