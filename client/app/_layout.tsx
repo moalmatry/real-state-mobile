@@ -30,7 +30,26 @@ const Layout = () => {
   return (
     <AuthProvider>
       <GlobalProvider>
-        <Stack screenOptions={{ headerShown: false }} />
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen
+            options={{
+              animation: "slide_from_right",
+            }}
+            name="sign-in"
+          />
+          <Stack.Screen
+            options={{
+              animation: "slide_from_right",
+            }}
+            name="register"
+          />
+          <Stack.Screen
+            options={{
+              animation: "slide_from_right",
+            }}
+            name="login"
+          />
+        </Stack>
       </GlobalProvider>
     </AuthProvider>
   );
