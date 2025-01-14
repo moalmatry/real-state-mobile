@@ -1,6 +1,10 @@
 import icons from "./icons";
 import images from "./images";
 
+// NOTE: By default android & iost doesn't allow not secure url but expo start server is an exception
+export const API_LINK = "http://192.168.1.7:7000/api/v1";
+export const TOKEN_KEY = "TOKEN";
+
 export const cards = [
   {
     title: "Card 1",

@@ -1,12 +1,14 @@
+import { AuthProvider } from "@/context/AuthContext";
 import GlobalProvider from "@/lib/global-provider";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import React, { useEffect } from "react";
 import "./global.css";
-import { AuthProvider } from "@/context/AuthContext";
 // import GlobalProvider from "@/lib/global-provider";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
+const queryClient = new QueryClient();
 const Layout = () => {
   const [fontsLoaded] = useFonts({
     "Rubik-Bold": require("../assets/fonts/Rubik-Bold.ttf"),
@@ -28,38 +30,40 @@ const Layout = () => {
   }
 
   return (
-    <AuthProvider>
-      <GlobalProvider>
-        <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen
-            options={{
-              animation: "slide_from_right",
-            }}
-            name="index"
-          />
-          <Stack.Screen
-            options={{
-              animation: "slide_from_right",
-            }}
-            name="register"
-          />
-          <Stack.Screen
-            options={{
-              animation: "slide_from_right",
-            }}
-            name="login"
-          />
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <GlobalProvider>
+          <Stack screenOptions={{ headerShown: false }}>
+            <Stack.Screen
+              options={{
+                animation: "slide_from_right",
+              }}
+              name="index"
+            />
+            <Stack.Screen
+              options={{
+                animation: "slide_from_right",
+              }}
+              name="register"
+            />
+            <Stack.Screen
+              options={{
+                animation: "slide_from_right",
+              }}
+              name="login"
+            />
 
-          <Stack.Screen
-            options={{
-              animation: "slide_from_right",
-            }}
-            name="forgot-password"
-          />
-          <Stack.Screen name="(root)" />
-        </Stack>
-      </GlobalProvider>
-    </AuthProvider>
+            <Stack.Screen
+              options={{
+                animation: "slide_from_right",
+              }}
+              name="forgot-password"
+            />
+            <Stack.Screen name="(root)" />
+          </Stack>
+        </GlobalProvider>
+      </AuthProvider>
+    </QueryClientProvider>
   );
 };
 export default Layout;

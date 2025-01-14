@@ -1,6 +1,7 @@
+import { useAuth } from "@/context/AuthContext";
 import { LoginInput, loginSchema } from "@/validation/loginScheema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { SafeAreaView, Text, View } from "react-native";
@@ -8,6 +9,7 @@ import Input from "../Input";
 import PrimaryButton from "../PrimaryButton";
 
 const LoginForm = () => {
+  const { onLogin, setAuthState } = useAuth();
   const {
     control,
     handleSubmit,
@@ -16,8 +18,10 @@ const LoginForm = () => {
     resolver: zodResolver(loginSchema),
   });
 
-  const onSubmit = (values: LoginInput) => {
-    console.log(values);
+  const onSubmit = async (values: LoginInput) => {
+    const { email, password } = values;
+    const user = await onLogin(email, password, setAuthState);
+    if (user.status === "success") router.push("/(root)/(tabs)");
   };
 
   return (

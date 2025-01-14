@@ -5,7 +5,7 @@ import React from "react";
 import { ActivityIndicator, SafeAreaView } from "react-native";
 
 const AppLayout = () => {
-  const { onLogin, onRegister } = useAuth();
+  const { onLogin, onRegister, authState } = useAuth();
   const { loading, isLoggedIn } = useGlobalContext();
 
   if (loading) {
