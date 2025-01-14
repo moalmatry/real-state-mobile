@@ -45,9 +45,9 @@
             "./assets/fonts/Rubik-Semibold.ttf"
           ]
         }
-      ]
+      ],
+      "expo-secure-store"
     ],
-
     "experiments": {
       "typedRoutes": true
     }

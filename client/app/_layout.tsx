@@ -4,6 +4,7 @@ import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import React, { useEffect } from "react";
 import "./global.css";
+import { AuthProvider } from "@/context/AuthContext";
 // import GlobalProvider from "@/lib/global-provider";
 
 const Layout = () => {
@@ -27,9 +28,11 @@ const Layout = () => {
   }
 
   return (
-    <GlobalProvider>
-      <Stack screenOptions={{ headerShown: false }} />
-    </GlobalProvider>
+    <AuthProvider>
+      <GlobalProvider>
+        <Stack screenOptions={{ headerShown: false }} />
+      </GlobalProvider>
+    </AuthProvider>
   );
 };
 export default Layout;
