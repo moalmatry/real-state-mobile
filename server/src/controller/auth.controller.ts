@@ -1,9 +1,11 @@
 import { NextFunction, Request, Response } from 'express';
 import catchAsync from 'express-async-handler';
+import { removedUser, renamedUser } from '../constants';
 import { findUser, findUserByResetCode, signup } from '../services/auth.service';
 import AppError from '../utils/AppError';
 import { generateUniqueRandomNumbers, hashedWithCrypto, signJwt, verifyHashedArgon } from '../utils/authAuth';
 import Email from '../utils/mailer';
+import { removeProperties } from '../utils/removeProperties';
 import {
   ForgotPasswordInput,
   LoginInput,
@@ -26,7 +28,9 @@ export const signupHandler = catchAsync(
     // 2) Generate token
     const token = signJwt(user.id);
 
-    res.status(201).json({ status: 'success', data: user, token });
+    const filteredUser = removeProperties(user, removedUser, renamedUser);
+
+    res.status(201).json({ status: 'success', data: filteredUser, token });
   },
 );
 
@@ -51,7 +55,9 @@ export const loginHandler = catchAsync(
     const token = signJwt(user.id);
     // 4) send response to client
 
-    res.status(200).json({ status: 'success', data: user, token });
+    const filteredUser = removeProperties(user, removedUser, renamedUser);
+
+    res.status(200).json({ status: 'success', data: filteredUser, token });
   },
 );
 

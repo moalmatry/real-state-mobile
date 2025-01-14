@@ -42,6 +42,7 @@ export interface IUser extends Document {
   }[];
   createdAt?: Date;
   updatedAt?: Date;
+  __v: number;
 }
 // SubCategory
 
