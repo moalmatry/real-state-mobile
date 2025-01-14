@@ -12,7 +12,6 @@ const RegisterForm = () => {
       </Text>
       <View className="flex gap-8">
         <Input iconName="user-large" iconSize={20} placeholder="Email" />
-
         <Input
           iconName="lock"
           iconSize={20}
@@ -28,13 +27,13 @@ const RegisterForm = () => {
             secureTextEntry
           />
 
-          <Text className="font-rubik w-80">
+          <Text className="font-rubik w-80 text-gray-500">
             By clicking the <Text className="text-primary-300">Register</Text>{" "}
             button, you agree to the public offer
           </Text>
         </View>
       </View>
-      <PrimaryButton title="Login" />
+      <PrimaryButton title="Create Account" />
       <Text className="text-center font-rubik">OR</Text>
       <Text className="text-center text-xl font-rubik">
         Already Have An Account{" "}
