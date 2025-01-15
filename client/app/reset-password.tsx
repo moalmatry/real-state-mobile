@@ -1,4 +1,4 @@
-import ResetPasswordScreen from "@/Screens/ResetPasswordScreen";
+import ResetPasswordScreen from "@/screens/ResetPasswordScreen";
 import React from "react";
 
 const ResetPassword = () => {

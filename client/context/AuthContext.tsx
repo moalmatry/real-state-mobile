@@ -1,8 +1,9 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import * as SecureStore from "expo-secure-store";
 import { login } from "@/services/auth/login";
-import { RegisterProps, UserResponse } from "@/types";
+import { RegisterProps, ResetPasswordResponse, UserResponse } from "@/types";
 import { register } from "@/services/auth/register";
+import { resetPassword } from "@/services/auth/resetPassword";
 
 interface AuthProps {
   authState?: { token: string | null; authenticated: boolean | null };
@@ -13,6 +14,11 @@ interface AuthProps {
     password: string,
     setState: React.Dispatch<React.SetStateAction<AuthStateType>>
   ) => Promise<UserResponse>;
+
+  onResetPassword: (props: {
+    userData: { confirmPassword: string; password: string; resetCode: string };
+    setState: React.Dispatch<React.SetStateAction<AuthStateType>>;
+  }) => Promise<ResetPasswordResponse>;
   onLogout?: () => Promise<any>;
 }
 const TOKEN_KEY = "my-jwt";
@@ -58,6 +64,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     onRegister: register,
     onLogin: login,
     onLogout: logout,
+    onResetPassword: resetPassword,
     authState,
     setAuthState,
   };

@@ -7,6 +7,7 @@ import React, { useEffect } from "react";
 import "./global.css";
 // import GlobalProvider from "@/lib/global-provider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Toast from "react-native-toast-message";
 
 const queryClient = new QueryClient();
 const Layout = () => {
@@ -59,8 +60,15 @@ const Layout = () => {
               }}
               name="forgot-password"
             />
+            <Stack.Screen
+              options={{
+                animation: "slide_from_right",
+              }}
+              name="reset-password"
+            />
             <Stack.Screen name="(root)" />
           </Stack>
+          <Toast />
         </GlobalProvider>
       </AuthProvider>
     </QueryClientProvider>

@@ -9,6 +9,8 @@ import {
 } from "@/validation/forgotPasswordSchema";
 import Input from "@/components/Input";
 import PrimaryButton from "@/components/PrimaryButton";
+import { forgotPassword } from "@/services/auth/forgotPassword";
+import Toast from "react-native-toast-message";
 
 const ForgotPasswordScreen = () => {
   const {
@@ -19,10 +21,23 @@ const ForgotPasswordScreen = () => {
     resolver: zodResolver(forgotPasswordSchema),
   });
 
-  const onSubmit = (data: ForgotPasswordInput) => {
-    console.log(data);
+  const onSubmit = async (data: ForgotPasswordInput) => {
+    const response = await forgotPassword(data.email);
 
-    router.push("/reset-password");
+    if (response.status === "fail")
+      return Toast.show({
+        type: "error",
+        // text1: response.message,
+        text1: "Something went wrong try again later",
+      });
+
+    Toast.show({
+      type: "info",
+      text1: "Check your email",
+      text2: response.message,
+    });
+
+    router.replace("/reset-password");
   };
   return (
     <SafeAreaView className="py-9 px-8 gap-8 bg-white flex-1">

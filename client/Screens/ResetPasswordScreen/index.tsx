@@ -1,16 +1,19 @@
 import Input from "@/components/Input";
 import PrimaryButton from "@/components/PrimaryButton";
+import { useAuth } from "@/context/AuthContext";
 import {
   ResetPasswordInput,
   resetPasswordSchema,
 } from "@/validation/resetPasswordSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { SafeAreaView, Text, View } from "react-native";
+import Toast from "react-native-toast-message";
 
 const ResetPasswordScreen = () => {
+  const { onResetPassword, setAuthState } = useAuth();
   const {
     control,
     handleSubmit,
@@ -18,8 +21,25 @@ const ResetPasswordScreen = () => {
   } = useForm<ResetPasswordInput>({
     resolver: zodResolver(resetPasswordSchema),
   });
-  const onSubmit = (data: ResetPasswordInput) => {
-    console.log(data);
+  const onSubmit = async (data: ResetPasswordInput) => {
+    const result = await onResetPassword({
+      userData: data,
+      setState: setAuthState,
+    });
+
+    if (result.status === "fail")
+      return Toast.show({
+        type: "error",
+        text1: "Failed",
+        text2: result.message,
+      });
+
+    Toast.show({
+      type: "success",
+      text1: "Success",
+      text2: "Password reset successfully",
+    });
+    router.push("/(root)/(tabs)");
   };
   return (
     <SafeAreaView className="py-9 px-8 gap-8 bg-white flex-1">

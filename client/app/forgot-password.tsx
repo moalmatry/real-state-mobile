@@ -1,4 +1,4 @@
-import ForgotPasswordScreen from "@/Screens/ForgotPasswordScreen";
+import ForgotPasswordScreen from "@/screens/ForgotPasswordScreen";
 import React from "react";
 
 const ForgotPassword = () => {
