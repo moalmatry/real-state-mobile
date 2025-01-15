@@ -1,7 +1,7 @@
 import { View, Text, SafeAreaView } from "react-native";
 import React from "react";
 import PrimaryButton from "../PrimaryButton";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import Input from "../Input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -21,6 +21,8 @@ const ForgotPasswordForm = () => {
 
   const onSubmit = (data: ForgotPasswordInput) => {
     console.log(data);
+
+    router.push("/reset-password");
   };
   return (
     <SafeAreaView className="py-9 px-8 gap-8 bg-white flex-1">

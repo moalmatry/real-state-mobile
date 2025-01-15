@@ -2,7 +2,7 @@ import { black } from "@/constants/colors";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import React from "react";
 import { Control, Controller } from "react-hook-form";
-import { Text, TextInput, View } from "react-native";
+import { KeyboardTypeOptions, Text, TextInput, View } from "react-native";
 
 export interface InputProps {
   /**
@@ -14,6 +14,7 @@ export interface InputProps {
   placeholder?: string;
   iconName: string;
   iconSize: number;
+  keyboardType?: KeyboardTypeOptions;
   error?: string;
 }
 
@@ -25,6 +26,7 @@ const Input = ({
   name,
   control,
   error,
+  keyboardType,
 }: InputProps) => {
   return (
     <View>
@@ -40,6 +42,7 @@ const Input = ({
           name={name}
           render={({ field: { onChange, onBlur, value } }) => (
             <TextInput
+              keyboardType={keyboardType}
               onChangeText={onChange}
               value={value}
               placeholder={placeholder}

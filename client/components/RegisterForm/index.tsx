@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { RegisterInput, registerSchema } from "@/validation/registerSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link, router } from "expo-router";
@@ -66,7 +67,9 @@ const RegisterForm = () => {
               placeholder="Password"
               secureTextEntry
               error={
-                errors.password?.message || errors.confirmPassword?.message
+                errors.password?.message ||
+                // @ts-ignore
+                errors.passwordConfirmation?.message
               }
             />
 
@@ -80,7 +83,8 @@ const RegisterForm = () => {
                 secureTextEntry
                 error={
                   errors.confirmPassword?.message ||
-                  errors.confirmPassword?.message
+                  // @ts-ignore
+                  errors.passwordConfirmation?.message
                 }
               />
 
