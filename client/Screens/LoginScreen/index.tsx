@@ -1,3 +1,5 @@
+import Input from "@/components/Input";
+import PrimaryButton from "@/components/PrimaryButton";
 import { useAuth } from "@/context/AuthContext";
 import { LoginInput, loginSchema } from "@/validation/loginScheema";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -5,10 +7,8 @@ import { Link, router } from "expo-router";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { SafeAreaView, Text, View } from "react-native";
-import Input from "../Input";
-import PrimaryButton from "../PrimaryButton";
 
-const LoginForm = () => {
+const LoginScreen = () => {
   const { onLogin, setAuthState } = useAuth();
   const {
     control,
@@ -72,4 +72,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default LoginScreen;

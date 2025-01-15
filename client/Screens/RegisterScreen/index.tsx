@@ -5,11 +5,12 @@ import { Link, router } from "expo-router";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { SafeAreaView, ScrollView, Text, View } from "react-native";
-import Input from "../Input";
-import PrimaryButton from "../PrimaryButton";
-import { useAuth } from "@/context/AuthContext";
 
-const RegisterForm = () => {
+import { useAuth } from "@/context/AuthContext";
+import Input from "@/components/Input";
+import PrimaryButton from "@/components/PrimaryButton";
+
+const RegisterScreen = () => {
   const { onRegister, setAuthState } = useAuth();
   const {
     control,
@@ -117,4 +118,4 @@ const RegisterForm = () => {
   );
 };
 
-export default RegisterForm;
+export default RegisterScreen;

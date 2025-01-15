@@ -1,3 +1,5 @@
+import Input from "@/components/Input";
+import PrimaryButton from "@/components/PrimaryButton";
 import {
   ResetPasswordInput,
   resetPasswordSchema,
@@ -7,10 +9,8 @@ import { Link } from "expo-router";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { SafeAreaView, Text, View } from "react-native";
-import Input from "../Input";
-import PrimaryButton from "../PrimaryButton";
 
-const ResetPasswordForm = () => {
+const ResetPasswordScreen = () => {
   const {
     control,
     handleSubmit,
@@ -77,4 +77,4 @@ const ResetPasswordForm = () => {
   );
 };
 
-export default ResetPasswordForm;
+export default ResetPasswordScreen;

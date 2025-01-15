@@ -1,16 +1,16 @@
 import { View, Text, SafeAreaView } from "react-native";
 import React from "react";
-import PrimaryButton from "../PrimaryButton";
 import { Link, router } from "expo-router";
-import Input from "../Input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   ForgotPasswordInput,
   forgotPasswordSchema,
 } from "@/validation/forgotPasswordSchema";
+import Input from "@/components/Input";
+import PrimaryButton from "@/components/PrimaryButton";
 
-const ForgotPasswordForm = () => {
+const ForgotPasswordScreen = () => {
   const {
     control,
     handleSubmit,
@@ -61,4 +61,4 @@ const ForgotPasswordForm = () => {
   );
 };
 
-export default ForgotPasswordForm;
+export default ForgotPasswordScreen;
