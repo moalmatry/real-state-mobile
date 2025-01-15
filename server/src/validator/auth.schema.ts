@@ -60,9 +60,18 @@ export const forgotPasswordSchema = z.object({
 });
 
 export const verifyPasswordResetCodeSchema = z.object({
-  body: z.object({
-    resetCode: z.string({ required_error: 'Please enter the code' }).min(5, 'invalid code'),
-  }),
+  body: z
+    .object({
+      resetCode: z.string({ required_error: 'Please enter the code' }).min(5, 'invalid code'),
+      password: z
+        .string({ required_error: 'Password is required' })
+        .min(8, 'Password is too short - should be min 8 characters'),
+      confirmPassword: z.string({ required_error: 'Please confirm your password' }),
+    })
+    .refine((data) => data.password === data.confirmPassword, {
+      message: "Password don't match",
+      path: ['passwordConfirmation'],
+    }),
 });
 
 export const resetPasswordSchema = z.object({

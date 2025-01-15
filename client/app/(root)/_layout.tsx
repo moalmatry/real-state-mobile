@@ -1,11 +1,9 @@
-import { useAuth } from "@/context/AuthContext";
 import { useGlobalContext } from "@/lib/global-provider";
-import { router, Slot } from "expo-router";
+import { Slot } from "expo-router";
 import React from "react";
 import { ActivityIndicator, SafeAreaView } from "react-native";
 
 const AppLayout = () => {
-  const { onLogin, onRegister, authState } = useAuth();
   const { loading, isLoggedIn } = useGlobalContext();
 
   if (loading) {
@@ -15,8 +13,6 @@ const AppLayout = () => {
       </SafeAreaView>
     );
   }
-
-  if (!isLoggedIn) return router.replace("/login");
 
   return <Slot />;
 };

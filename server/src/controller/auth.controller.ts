@@ -106,9 +106,8 @@ export const forgotPasswordHandler = catchAsync(
 export const verifyPasswordResetCodeHandler = catchAsync(
   async (req: Request<object, object, VerifyPasswordResetCodeInput>, res: Response, next: NextFunction) => {
     // 1) Get user based on reset code
-    const { resetCode } = req.body;
+    const { resetCode, password } = req.body;
     const hashedResetCode = hashedWithCrypto(resetCode);
-    console.log(hashedResetCode);
     const user = await findUserByResetCode(hashedResetCode);
 
     if (!user) {
@@ -116,29 +115,6 @@ export const verifyPasswordResetCodeHandler = catchAsync(
     }
 
     user.passwordResetVerified = true;
-    user.save();
-    res.status(200).json({
-      status: 'success',
-      message: 'Reset code is valid. You can now reset your password.',
-    });
-  },
-);
-
-/**@description reset password
- * @route  Post /api/v1/auth/reset-password
- * @access public
- */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const resetPasswordHandler = catchAsync(
-  async (req: Request<object, object, ResetPasswordInput>, res: Response, next: NextFunction) => {
-    const { email, password } = req.body;
-    const user = await findUser(email);
-    if (!user) {
-      return next(new AppError('There no user with email', 404));
-    }
-    if (!user.passwordResetVerified) {
-      return next(new AppError('Reset code is not valid', 400));
-    }
     user.password = password;
     user.passwordResetVerified = false;
     user.passwordResetExpires = undefined;
@@ -149,6 +125,34 @@ export const resetPasswordHandler = catchAsync(
       status: 'success',
       message: 'Password has been reset successfully',
       token,
+    });
+  },
+);
+
+/**@description reset password
+ * @route  Post /api/v1/auth/reset-password
+ * @access public
+ */
+export const resetPasswordHandler = catchAsync(
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  async (req: Request<object, object, ResetPasswordInput>, res: Response, next: NextFunction) => {
+    // const { email, password } = req.body;
+    // const user = await findUser(email);
+    // if (!user) {
+    //   return next(new AppError('There no user with email', 404));
+    // }
+    // if (!user.passwordResetVerified) {
+    //   return next(new AppError('Reset code is not valid', 400));
+    // }
+    // user.password = password;
+    // user.passwordResetVerified = false;
+    // user.passwordResetExpires = undefined;
+    // user.passwordResetCode = '';
+    // user.save();
+    // const token = signJwt(user.id);
+    res.status(400).json({
+      status: 'fail',
+      message: 'This route no longer exists',
     });
   },
 );

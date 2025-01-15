@@ -30,6 +30,7 @@ const WelcomeScreen = () => {
       router.push("/(root)/(tabs)");
     }
   };
+
   if (!SecureStore.getItem(TOKEN_KEY))
     return <Redirect href="/(root)/(tabs)" />;
   else
