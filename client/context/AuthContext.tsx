@@ -1,12 +1,13 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import * as SecureStore from "expo-secure-store";
 import { login } from "@/services/auth/login";
-import { UserResponse } from "@/types";
+import { RegisterProps, UserResponse } from "@/types";
+import { register } from "@/services/auth/register";
 
 interface AuthProps {
   authState?: { token: string | null; authenticated: boolean | null };
   setAuthState: React.Dispatch<React.SetStateAction<AuthStateType>>;
-  onRegister?: (email: string, password: string) => Promise<any>;
+  onRegister: (props: RegisterProps) => Promise<UserResponse>;
   onLogin: (
     email: string,
     password: string,
@@ -44,24 +45,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   //   Register Part
-  const register = async (email: string, password: string) => {
-    try {
-      const request = await fetch(`${API_URL}/auth`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
-      });
-      const result = await request.json();
-      return result;
-    } catch (e) {
-      return { error: true, message: (e as any).response.data.msg };
-    }
-  };
 
   const logout = async () => {
     await SecureStore.deleteItemAsync(TOKEN_KEY);

@@ -30,7 +30,7 @@ export const GlobalProvider = ({ children }: { children: React.ReactNode }) => {
     fn: getCurrentUser,
   });
   const isLoggedIn = !!user;
-  console.log(JSON.stringify(user, null, 2));
+  // console.log(JSON.stringify(user, null, 2));
 
   return (
     <GlobalContext.Provider

@@ -1,3 +1,5 @@
+import { AuthStateType } from "@/context/AuthContext";
+
 export type Role = "ADMIN" | "USER" | "EMPLOYEE";
 export interface User {
   id: string;
@@ -41,4 +43,16 @@ export interface Response {
 export interface UserResponse extends Response {
   token: string;
   data: User;
+}
+
+export interface Register {
+  email: string;
+  name: string;
+  password: string;
+  confirmPassword: string;
+  phone: string;
+}
+export interface RegisterProps {
+  userData: Register;
+  setState: React.Dispatch<React.SetStateAction<AuthStateType>>;
 }

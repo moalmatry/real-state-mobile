@@ -30,7 +30,8 @@ const WelcomeScreen = () => {
       router.push("/(root)/(tabs)");
     }
   };
-  if (SecureStore.getItem(TOKEN_KEY)) return <Redirect href="/(root)/(tabs)" />;
+  if (!SecureStore.getItem(TOKEN_KEY))
+    return <Redirect href="/(root)/(tabs)" />;
   else
     return (
       <SafeAreaView className="bg-white h-full">
